@@ -1,0 +1,11 @@
+.is-collapse-content {
+    height: 0;
+    overflow-y: hidden;
+    transition: height 0.2s ease;
+}
+
+.is-collapse-content.is-active {
+    /* height 若指定比例，動畫會失效 */
+    height: 144px;
+    transition: height 0.2s ease;
+}

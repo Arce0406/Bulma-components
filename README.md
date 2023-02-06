@@ -1,1 +1,1 @@
-# Bulma-components
+# Bulma components
