@@ -1,0 +1,57 @@
+html.has-navbar-fixed-top,
+body.has-navbar-fixed-top {
+  padding-top: 3.25rem;
+}
+
+@media screen and (min-width: 1024px) {
+  html.has-aside-left.has-aside-expanded nav.navbar,
+  html.has-aside-left.has-aside-expanded body {
+    padding-left: 14rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  html.has-aside-left nav.navbar,
+  html.has-aside-left body {
+    transition: padding-left 250ms ease-in-out 50ms;
+  }
+}
+
+/* navbar */
+
+.navbar.is-fixed-top {
+  top: 0;
+}
+.navbar.is-fixed-bottom,
+.navbar.is-fixed-top {
+  left: 0;
+  position: fixed;
+  right: 0;
+  z-index: 30;
+}
+
+/*  */
+
+.aside {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 40;
+  height: 100vh;
+  padding: 0;
+  box-shadow: none;
+  background: #2e323a;
+}
+
+@media screen and (min-width: 1024px) {
+  .aside.has-aside-left,
+  .aside.is-placed-left {
+    display: block;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .aside.is-expanded {
+    width: 14rem;
+  }
+}
