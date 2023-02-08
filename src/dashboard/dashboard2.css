@@ -1,38 +1,25 @@
+:root {
+  --aside-width: 14rem;
+}
+
+/* html */
+
 html.has-navbar-fixed-top,
 body.has-navbar-fixed-top {
   padding-top: 3.25rem;
 }
 
-@media screen and (min-width: 1024px) {
-  html.has-aside-left.has-aside-expanded nav.navbar,
-  html.has-aside-left.has-aside-expanded body {
-    padding-left: 14rem;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  html.has-aside-left nav.navbar,
-  html.has-aside-left body {
-    transition: padding-left 250ms ease-in-out 50ms;
-  }
-}
-
 /* navbar */
 
-.navbar.is-fixed-top {
-  top: 0;
-}
-.navbar.is-fixed-bottom,
-.navbar.is-fixed-top {
-  left: 0;
-  position: fixed;
-  right: 0;
-  z-index: 30;
+.navbar-icon-burger {  
+  height: 3.25rem;
+  width: 3.25rem;
+  margin-left: auto;  
 }
 
-/*  */
+/* aside */
 
-.aside {
+aside.aside {
   display: none;
   position: fixed;
   top: 0;
@@ -41,17 +28,65 @@ body.has-navbar-fixed-top {
   height: 100vh;
   padding: 0;
   box-shadow: none;
-  background: #2e323a;
+}
+
+.aside-brand {
+}
+
+aside.menu {
+  padding-left: 0.75rem;
 }
 
 @media screen and (min-width: 1024px) {
-  .aside.has-aside-left,
-  .aside.is-placed-left {
+  html.has-aside-left.has-aside-expanded nav.navbar,
+  html.has-aside-left.has-aside-expanded body {
+    padding-left: var(--aside-width);
+  }
+
+  html.has-aside-left nav.navbar,
+  html.has-aside-left body {
+    transition: padding-left 250ms ease-in-out 50ms;
+  }
+
+  .navbar-icon-burger {
+      display: none;
+  }
+
+  aside.aside.has-aside-left,
+  aside.aside.is-placed-left {
     display: block;
   }
+
+  aside.aside.is-expanded {
+    width: var(--aside-width);
+  }
 }
-@media screen and (min-width: 1024px) {
-  .aside.is-expanded {
-    width: 14rem;
+
+@media screen and (max-width: 1023px) {
+
+  html.has-aside-mobile-transition aside.aside {
+    width: 15rem;
+    display: block;
+    left: -15rem;
+  }
+
+  html.has-aside-mobile-transition aside.is-active {
+    width: var(--aside-width);
+    display: block;
+    left: 0;
+  }
+
+  aside.aside {
+    transition: left 250ms ease-in-out 50ms;
+  }
+
+  #sidebar-burger:focus + aside.aside{
+    width: var(--aside-width);
+    display: block;
+    left: 0;
+  }
+
+  #sidebar-burger:focus +  html.has-aside-left.has-aside-expanded nav.navbar, html.has-aside-left.has-aside-expanded body {
+    padding-left: var(--aside-width);
   }
 }

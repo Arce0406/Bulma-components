@@ -1,10 +1,9 @@
+/*
+ 預設樣式是"display:none"
+ 但在大尺寸時是"block"
+ 然後按鈕按下時另外給予一個class是"display:block"
+ */
 :root {
-  --default-padding-top: 3.25rem;
-  --footer-height: 168px;
-  --context-min-height: calc(
-    98vh - var(--default-padding-top) - var(--footer-height)
-  );
-
   --aside-width: 14rem;
 }
 
@@ -17,12 +16,6 @@ body {
   overflow: auto;
 }
 
-/* header */
-
-.padding-header {
-  padding-top: var(--default-padding-top);
-}
-
 /* footer */
 
 .footer {
@@ -32,35 +25,40 @@ body {
 /* context */
 
 .context {
-  width: 100%;
-  min-height: var(--context-min-height);
+  /* padding-left: 10rem; */
   overflow: auto;
-  margin: 0;
 }
 
 /* sidebar */
 
-.sidebar-menu {
+.sidebar {  
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: auto;
+}
+
+#sidebar-menu {
   width: var(--aside-width);
-  padding: 1.5rem;
+  padding: 0 1rem;
   display: none;
 }
 
 @media screen and (min-width: 1024px) {
-  .sidebar-menu {
+  #sidebar-menu {
     display: block;
   }
 }
 
 @media screen and (max-width: 1023px) {
-  .sidebar-menu {
+  #sidebar-menu {
     max-height: calc(100vh - 3.25rem);
     overflow: auto;
     background-color: #fff;
-    box-shadow: 0 8px 16px rgb(10 10 10 / 10%);    
+    box-shadow: 0 8px 16px rgb(10 10 10 / 10%);
   }
 
-  .sidebar-menu.is-active {
+  #sidebar-menu.is-active {
     display: block;
   }
 }

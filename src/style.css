@@ -27,20 +27,8 @@
     width: 0 !important;
 }
 
+
 /* fixed */
 
-.is-fixed-bottom {
-  bottom: 0;
-}
 
-.is-fixed-top {
-  top: 0;
-}
-
-.is-fixed-bottom,
-.is-fixed-top {
-  left: 0;
-  position: fixed;
-  right: 0;
-  z-index: 30;
-}
+/* border */
