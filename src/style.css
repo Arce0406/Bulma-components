@@ -1,13 +1,8 @@
 /* Google Font */
 
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
 }
-
 
 /* size */
 
@@ -15,20 +10,25 @@
   height: 100% !important;
 }
 
-.h-0{
-    height: 0 !important;
+.h-0 {
+  height: 0 !important;
 }
 
 .w-100 {
   width: 100% !important;
 }
 
-.w-0{
-    width: 0 !important;
+.w-0 {
+  width: 0 !important;
 }
-
 
 /* fixed */
 
-
 /* border */
+.border-bottom {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.border-right {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}

@@ -23,10 +23,6 @@ body {
 }
 
 /* context */
-
-.context-wrapper {
-}
-
 .context {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -35,40 +31,20 @@ body {
 
 /* sidebar */
 
-/* .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: auto;
-} */
-
-/* #sidebar-menu {
-  width: var(--aside-width);
-  padding: 0 1rem;
-  display: none;
-} */
-
-.sidebar-wrapper{
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: var(--aside-width);
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
 #sidebar-menu {
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
   width: var(--aside-width);
-  /* padding: 0 1rem; */
   padding-left: 1rem;
   padding-right: 1rem;
   display: none;
+}
+
+#sidebar-menu .menu-content{
+  padding-top: 1rem;
+  padding-left: 1rem;
 }
 
 @media screen and (min-width: 1024px) {
