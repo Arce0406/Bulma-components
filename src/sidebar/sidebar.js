@@ -1,14 +1,4 @@
-import * as modal from "../modal/modal.js";
-
-function load() {
-  document.addEventListener("DOMContentLoaded", () => {
-    console.log("Loading...");
-    sidebar_init();
-    modal.modalLoaded();
-  });
-}
-
-function sidebar_init() {
+document.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("sidebar-menu-burger")
     .addEventListener("click", (e) => {
@@ -27,6 +17,4 @@ function sidebar_init() {
         .getElementById(e.currentTarget.dataset.content)
         .classList.toggle("is-active");
     });
-}
-
-load();
+});

@@ -1,0 +1,94 @@
+/*
+ 預設樣式是"display:none"
+ 但在大尺寸時是"block"
+ 然後按鈕按下時另外給予一個class是"display:block"
+ */
+:root {
+  --aside-width: 14rem;
+  --aside-padding: 2rem;
+  --burger-width: 5.25rem;
+  --brand-width: calc(112px+1.5rem);
+}
+
+/* common */
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+/* sidebar */
+
+.sidebar-wrapper {
+  /* position: fixed; */
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  z-index: 9999;
+  /* box-shadow: 0 8px 16px rgb(10 10 10 / 10%); */
+}
+
+#logo {
+  width: calc(112px + 1.5rem);
+  padding: 0.5rem 0.75rem;
+  background-color: inherit;
+  transition: width 200ms linear 50ms,
+  opacity 150ms cubic-bezier(0.95, 0.05, 0.795, 0.035) 50ms,
+  padding-left 300ms linear 50ms, padding-right 300ms linear 50ms;
+}
+
+#logo:hover,
+#logo:focus {
+  background-color: rgb(245, 245, 245);
+}
+
+#sidebar-menu {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: width 200ms linear 50ms,
+    opacity 150ms cubic-bezier(0.95, 0.05, 0.795, 0.035) 50ms,
+    padding-left 300ms linear 50ms, padding-right 300ms linear 50ms;
+}
+
+@media screen and (min-width: 1024px) {
+  #sidebar-menu {
+    width: var(--aside-width);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  #sidebar-menu {
+    background-color: #fff;
+    width: 0;
+    opacity: 0;    
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #sidebar-menu.is-active {
+    width: var(--aside-width);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    opacity: 1;
+  }
+
+  #logo {
+    width: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  #logo.is-active {
+    width: calc(112px + 1.5rem);
+    padding: 0.5rem 0.75rem;
+  }
+}

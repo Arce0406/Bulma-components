@@ -1,0 +1,43 @@
+:root {
+  --default-padding-top: 3.25rem;
+  --footer-height: 168px;
+  --aside-width: 14rem;
+}
+
+/* common */
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+/* context */
+.context {
+  padding-top: var(--default-padding-top);
+}
+
+.context .container.is-fluid {
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+
+.course{
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.notification {
+  padding: 1.25rem 1.5rem
+}
+
+.is-collapse-content {
+  height: 0;
+  overflow-y: hidden;
+  transition: height 0.2s ease;
+}
+
+.is-collapse-content.is-active {
+  height: auto;
+  transition: height 0.2s ease;
+}
