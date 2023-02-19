@@ -1,0 +1,67 @@
+:root {
+  --default-padding-top: 3.25rem;
+  --aside-width: 25rem;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+body {
+  padding-right: 0;
+  padding-top: var(--default-padding-top);
+}
+
+body.is-active {
+  padding-right: var(--aside-width);
+}
+
+/* transition */
+
+.transition {
+  transition: width 200ms linear 50ms,
+    opacity 150ms cubic-bezier(0.95, 0.05, 0.795, 0.035) 50ms,
+    padding-left 300ms linear 50ms, padding-right 300ms linear 50ms;
+}
+
+/* sidebar */
+
+.sidebar-menu {
+  position: fixed;
+  right: 0;
+  height: 100%;
+  width: 0;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  opacity: 0;
+  background-color: #fff;
+}
+
+body.is-active > .sidebar-menu {
+  width: var(--aside-width);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  opacity: 1;
+}
+
+/*
+    video
+*/
+
+.video-wrapper {
+  position: relative;
+  width: auto;
+  height: 100%;
+}
+
+video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* touch-action: none; */
+  cursor: inherit;
+}

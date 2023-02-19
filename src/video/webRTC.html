@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Cache setting -->
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="0">
+
+    <!-- Preview -->
+    <title>Bulma components</title>
+    <!-- Preview: Primary Meta Tags -->
+    <meta name="title" content="Arce0406 | Bulma components">
+    <meta name="description" content="">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="video.css" />
+
+    <!-- Script -->
+    <script src="sidebar.js"></script>
+    <script type="module" src="./webRTC/WebRTC.js"></script>
+</head>
+
+<body class="has-background-black-ter transition is-active">
+
+    <!-- Header -->
+    <nav class="navbar is-fixed-top border-bottom" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand w-100">
+            <a class="navbar-item" href="#">
+                <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+            </a>
+
+            <a role="button" class="navbar-burger is-block" id="sidebar-menu-burger" aria-label="menu"
+                aria-expanded="false" data-target="sidebar-menu" data-brand="logo" data-content="video-wrapper">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+    </nav>
+
+    <aside id="sidebar-menu" class="menu sidebar-menu has-background-white border-left transition">
+        <form>
+            <div class="field is-grouped">
+                <div class="control">
+                    <button type="button" id="btn_stream" class="button is-link">開始擷取</button>
+                </div>
+                <div class="control">
+                    <button type="button" id="btn_record" class="button is-success" disabled>開始錄影</button>
+                </div>
+                <div class="control">
+                    <button type="button" id="btn_download" class="button is-success" disabled>下載錄影</button>
+                </div>
+            </div>            
+            <div class="field">
+                <label class="label">Codec Preferences</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select id="codecPreferences"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Audio input source</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select id="audioSource"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Audio output destination</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select id="audioOutput"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Video source</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select id="videoSource"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Message</label>
+                <div class="control">
+                  <textarea id="errorMsg" class="textarea" readonly></textarea>
+                </div>
+            </div>
+              
+        </form>
+    </aside>
+
+    <div class="video-wrapper">
+        <video class="transition" src=""></video>
+    </div>
+
+</body>
+
+</html>
