@@ -7,7 +7,7 @@
  */
 
 import * as Controller from "./Controller.js";
-
+import * as DB from "./IndexDB.js";
 
 // Recording object
 let mediaRecorder;
@@ -18,6 +18,11 @@ let duration;
 
 const recordMimeType = "video/webm;codecs=vp9,opus";
 
+function dbCheck() {
+  if (DB.isIndexDbSupport()) {
+    DB.openDb();
+  }
+}
 
 function start() {
   if (!window.stream || (window.stream && !window.stream.active)) {
@@ -41,6 +46,7 @@ function start() {
       // console.log("Recorded Blobs: ", chunks);
       duration = Date.now() - startTime;
       isRecording = false;
+      saveVideo();
     });
     // mediaRecorder.addEventListener("pause", function (event) {});
     // mediaRecorder.addEventListener("resume", function (event) {});
@@ -69,7 +75,7 @@ function stop() {
   isRecording = false;
 }
 
-function download(videoBlobData, mimeType) {  
+function download(videoBlobData, mimeType) {
   const data = videoBlobData ? videoBlobData : chunks;
   const options = {
     type: mimeType ? mimeType : "video/webm",
@@ -91,20 +97,17 @@ function download(videoBlobData, mimeType) {
   }, 100);
 }
 
-function download2(blob) {   
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.style.display = "none";
-  a.href = url;
-  a.download = "test.webm";
-  document.body.appendChild(a);
-  a.click();
-  setTimeout(() => {
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
-  }, 100);
-}
+function saveVideo(videoBlobData, mimeType) {
+  const data = videoBlobData ? videoBlobData : chunks;
+  const options = {
+    type: mimeType ? mimeType : "video/webm",
+  };
 
+  if (data === chunks && isRecording) return;
+
+  const blob = new Blob(data, options);
+  DB.addVideo("test", blob);
+}
 
 function replay(replayElement) {
   const mimeType = codecPreferences.options[
@@ -119,4 +122,4 @@ function replay(replayElement) {
   replayElement.play();
 }
 
-export { isRecording, start, stop, download, replay };
+export { isRecording, dbCheck, start, stop, download, replay };

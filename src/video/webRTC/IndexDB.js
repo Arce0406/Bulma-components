@@ -8,25 +8,9 @@ const DB_STORE_NAME = "videos";
 
 let db;
 // Used to keep track of which view is displayed to avoid uselessly reloading it
-var current_view_pub_key;
+let current_view_pub_key;
 
 function isIndexDbSupport() {
-  // In the following line, you should include the prefixes of implementations you want to test.
-  window.indexedDB =
-    window.indexedDB ||
-    window.mozIndexedDB ||
-    window.webkitIndexedDB ||
-    window.msIndexedDB;
-  // DON'T use "var indexedDB = ..." if you're not in a function.
-  // Moreover, you may need references to some window.IDB* objects:
-  window.IDBTransaction =
-    window.IDBTransaction ||
-    window.webkitIDBTransaction ||
-    window.msIDBTransaction;
-  window.IDBKeyRange =
-    window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
-  // (Mozilla has never prefixed these objects, so we don't need window.mozIDB*)
-
   if (!window.indexedDB) {
     window.alert(
       "Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available."
@@ -34,6 +18,10 @@ function isIndexDbSupport() {
     return false;
   }
   return true;
+}
+
+function onDbError(evt) {
+  console.error("openDb:", evt.target.errorCode);
 }
 
 function openDb() {
@@ -44,14 +32,14 @@ function openDb() {
     // db = req.result;
     db = this.result;
     console.log("openDb DONE");
+    
+    getVideo();
   };
-  req.onerror = function (evt) {
-    console.error("openDb:", evt.target.errorCode);
-  };
+  req.onerror = onDbError;
 
   req.onupgradeneeded = function (evt) {
     console.log("openDb.onupgradeneeded");
-    var store = evt.currentTarget.result.createObjectStore(DB_STORE_NAME, {
+    let store = evt.currentTarget.result.createObjectStore(DB_STORE_NAME, {
       keyPath: "id",
       autoIncrement: true,
     });
@@ -62,83 +50,99 @@ function openDb() {
   };
 }
 
+function deleteDb() {
+  let delDb = window.indexedDB.deleteDatabase(DB_NAME);
+  delDb.addEventListener("error", onDbError);
+  delDb.addEventListener("success", function (event) {
+    console.log("資料庫刪除成功!!");
+  });
+}
+
 /**
  * @param {string} store_name
  * @param {string} mode either "readonly" or "readwrite"
  */
 function getObjectStore(store_name, mode) {
-  var tx = db.transaction(store_name, mode);
+  let tx = db.transaction(store_name, mode);
   return tx.objectStore(store_name);
 }
 
 function clearObjectStore(store_name) {
-  var store = getObjectStore(DB_STORE_NAME, 'readwrite');
-  var req = store.clear();
-  req.onsuccess = function(evt) {
-    displayActionSuccess("Store cleared");
-    displayPubList(store);
+  let store = getObjectStore(DB_STORE_NAME, "readwrite");
+  let req = store.clear();
+  req.onsuccess = function (evt) {
+    console.log("Store cleared");
   };
   req.onerror = function (evt) {
     console.error("clearObjectStore:", evt.target.errorCode);
-    displayActionFailure(this.error);
   };
 }
 
-function getBlob(key, store, success_callback) {
-  var req = store.get(key);
-  req.onsuccess = function(evt) {
-    var value = evt.target.result;
-    if (value)
-      success_callback(value.blob);
-  };
-}
+function addVideo(title, blob) {
+  const d = Date.now();
 
-function addPublication(biblioid, title, year, blob) {
-  console.log("addPublication arguments:", arguments);
-  var obj = { biblioid: biblioid, title: title, year: year };
-  if (typeof blob != 'undefined')
-    obj.blob = blob;
+  let obj = { title: title, create_date: d };
+  if (typeof blob != "undefined") obj.blob = blob;
 
-  var store = getObjectStore(DB_STORE_NAME, 'readwrite');
-  var req;
+  let store = getObjectStore(DB_STORE_NAME, "readwrite");
+  let req;
   try {
     req = store.add(obj);
   } catch (e) {
-    if (e.name == 'DataCloneError')
-      displayActionFailure("This engine doesn't know how to clone a Blob, " +
-                           "use Firefox");
+    if (e.name == "DataCloneError")
+      console.log(
+        "This engine doesn't know how to clone a Blob, " + "use Firefox"
+      );
     throw e;
   }
   req.onsuccess = function (evt) {
     console.log("Insertion in DB successful");
-    displayActionSuccess();
-    displayPubList(store);
   };
-  req.onerror = function() {
-    console.error("addPublication error", this.error);
-    displayActionFailure(this.error);
+  req.onerror = function () {
+    console.error("addVideo error", this.error);
   };
 }
 
- /**
-   * @param {number} key
-   * @param {IDBObjectStore=} store
-   */
- function deletePublication(key, store) {
+function updateVideo(){}
+
+function getVideo(){
+  let store = getObjectStore(DB_STORE_NAME, "readwrite");
+  // store.getAll().onsuccess = function(event) {
+  //   console.log("Got all videos: ", event.target.result);
+  // };
+  let datas = [];
+  store.openCursor().onsuccess = function(event) {
+    var cursor = event.target.result;
+    if (cursor) {
+      datas.push(cursor.value);
+      cursor.continue();
+    }
+    else {
+      console.log("Got all videos: ", datas);
+      // datas[0].blob
+    }
+  };
+}
+
+/**
+ * @param {number} key
+ * @param {IDBObjectStore=} store
+ */
+function deleteVideo(key, store) {
   console.log("deletePublication:", arguments);
 
-  if (typeof store == 'undefined')
-    store = getObjectStore(DB_STORE_NAME, 'readwrite');
+  if (typeof store == "undefined")
+    store = getObjectStore(DB_STORE_NAME, "readwrite");
 
   // As per spec http://www.w3.org/TR/IndexedDB/#object-store-deletion-operation
   // the result of the Object Store Deletion Operation algorithm is
   // undefined, so it's not possible to know if some records were actually
   // deleted by looking at the request result.
-  var req = store.get(key);
-  req.onsuccess = function(evt) {
-    var record = evt.target.result;
+  let req = store.get(key);
+  req.onsuccess = function (evt) {
+    let record = evt.target.result;
     console.log("record:", record);
-    if (typeof record == 'undefined') {
+    if (typeof record == "undefined") {
       displayActionFailure("No matching record found");
       return;
     }
@@ -146,7 +150,7 @@ function addPublication(biblioid, title, year, blob) {
     // the deletion. If the key was a Number for creation, then it needs to
     // be a Number for deletion.
     req = store.delete(key);
-    req.onsuccess = function(evt) {
+    req.onsuccess = function (evt) {
       console.log("evt:", evt);
       console.log("evt.target:", evt.target);
       console.log("evt.target.result:", evt.target.result);
@@ -160,7 +164,7 @@ function addPublication(biblioid, title, year, blob) {
   };
   req.onerror = function (evt) {
     console.error("deletePublication:", evt.target.errorCode);
-    };
+  };
 }
 
-export { isIndexDbSupport };
+export { isIndexDbSupport, openDb, addVideo, getVideo };

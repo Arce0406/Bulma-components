@@ -4,6 +4,7 @@ import * as Streamer from "./Streamer.js";
 import * as Recorder from "./Recorder.js";
 
 window.addEventListener("load", function () {
+  Recorder.dbCheck();
   Devices.listenStart();
   init();
 });
