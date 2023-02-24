@@ -32,8 +32,8 @@ function openDb() {
     // db = req.result;
     db = this.result;
     console.log("openDb DONE");
-    
-    getVideo();
+
+    getAllVideo();
   };
   req.onerror = onDbError;
 
@@ -103,13 +103,11 @@ function addVideo(title, blob) {
   };
 }
 
-function updateVideo(){}
+function updateVideo() {}
 
-function getVideo(){
+async function getAllVideo() {
   let store = getObjectStore(DB_STORE_NAME, "readwrite");
-  // store.getAll().onsuccess = function(event) {
-  //   console.log("Got all videos: ", event.target.result);
-  // };
+
   let datas = [];
   store.openCursor().onsuccess = function(event) {
     var cursor = event.target.result;
@@ -122,6 +120,31 @@ function getVideo(){
       // datas[0].blob
     }
   };
+
+  // store.getAll().onsuccess = function(event) {
+  //   console.log("Got all videos: ", event.target.result);
+  // };
+
+}
+
+function getVideosAsync(skip, take) {
+  return new Promise((resolve, reject) => {
+    let store = getObjectStore(DB_STORE_NAME, "readonly");
+    var results = [];
+    var request =
+      (store.openCursor(IDBKeyRange.bound(skip, skip + take)).onsuccess =
+      function (evt) {
+        var cursor = evt.target.result;
+        if (cursor) {
+          results.push(cursor.value);
+          cursor.continue();
+        }
+        resolve(results);
+      }.onerror =
+        function (err) {
+          reject(err);
+        });
+  });
 }
 
 /**
@@ -167,4 +190,4 @@ function deleteVideo(key, store) {
   };
 }
 
-export { isIndexDbSupport, openDb, addVideo, getVideo };
+export { isIndexDbSupport, openDb, addVideo, getAllVideo };

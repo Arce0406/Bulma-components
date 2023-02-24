@@ -4,10 +4,17 @@ import * as Streamer from "./Streamer.js";
 import * as Recorder from "./Recorder.js";
 
 window.addEventListener("load", function () {
-  Recorder.dbCheck();
   Devices.listenStart();
   init();
+
+  db();
 });
+
+async function db() {
+  // await Recorder.dbSetting();
+  console.log("dbSetting...");
+  Recorder.dbSetting();
+}
 
 function init() {
   Controller.streamButton.addEventListener("click", function () {

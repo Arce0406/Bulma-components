@@ -7,7 +7,7 @@
  */
 
 import * as Controller from "./Controller.js";
-import * as DB from "./IndexDB.js";
+import * as DB from "./idb.js";
 
 // Recording object
 let mediaRecorder;
@@ -18,9 +18,11 @@ let duration;
 
 const recordMimeType = "video/webm;codecs=vp9,opus";
 
-function dbCheck() {
-  if (DB.isIndexDbSupport()) {
-    DB.openDb();
+async function dbSetting() {
+  const { dbPromise, videoStored } = await DB.init();
+  let keys = await videoStored.keys(); // 取出key值來確認 db 是否有cache資料了
+  if (keys.length) {
+    console.log(keys);
   }
 }
 
@@ -106,7 +108,7 @@ function saveVideo(videoBlobData, mimeType) {
   if (data === chunks && isRecording) return;
 
   const blob = new Blob(data, options);
-  DB.addVideo("test", blob);
+  // DB.addVideo("test", blob);
 }
 
 function replay(replayElement) {
@@ -122,4 +124,4 @@ function replay(replayElement) {
   replayElement.play();
 }
 
-export { isRecording, dbCheck, start, stop, download, replay };
+export { isRecording, dbSetting, start, stop, download, replay };
