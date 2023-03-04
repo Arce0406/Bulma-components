@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Cache setting -->
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="0">
+
+    <!-- Preview -->
+    <title>Basic Media Player</title>
+    <!-- Preview: Primary Meta Tags -->
+    <meta name="title" content="Arce0406 | Bulma components">
+    <meta name="description" content="">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="./media-player.css" />
+
+    <!-- JS -->
+    <script src="./controller-media.js"></script>
+</head>
+
+<body class="has-background-black-ter">
+    <div class="video-wrapper">
+        <video id="main-video">
+            <source src="./rainy.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="modal-group"></div>
+
+    <div class="controls p-5">
+
+        <div class="control-group">
+            <!--  -->
+            <!-- 播放 -->
+            <button id="play_pause" class="button is-control">
+                <span class="material-symbols-outlined">
+                    play_arrow
+                </span>
+            </button>
+            <!--  -->
+            <!-- 音量 -->
+            <button id="volume" class="button is-control w-auto">
+                <span class="material-symbols-outlined">
+                    volume_up
+                </span>
+                <div id="volume-slider" class="ml-4">
+                    <input type="range" min="0" step="1" max="100" value="100" class="w-100" id="volume-range">
+                </div>
+            </button>
+        </div>
+
+        <div class="control-group">
+            <!--  -->
+            <button id="setting" class="button is-control">
+                <span class="material-symbols-outlined">
+                    discover_tune
+                </span>
+            </button>
+            <!--  -->
+            <button class="button is-control">
+                <input id="video-file" class="file-input" type="file" accept=".mp4, .webm, .ogg">
+                <span class="material-symbols-outlined">
+                    video_file
+                </span>
+            </button>
+            <!-- 全螢幕 -->
+            <button id="fullscreen" class="button is-control">
+                <span class="material-symbols-outlined">
+                    fullscreen
+                </span>
+            </button>
+        </div>
+
+    </div>
+
+    <progress id="video-progress" class="progress is-small is-info transition" value="0" max="100">0%</progress>
+
+    <div class="time-info p-5">
+        <span class="tag is-warning is-rounded">00:01</span>
+    </div>
+
+    <div class="status-info p-5 is-rounded has-text-light">
+        Lorem ipsum dolor sit amet
+    </div>
+
+    <div class="hover-test"></div>
+</body>
+
+</html>

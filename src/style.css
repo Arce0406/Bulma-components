@@ -34,6 +34,9 @@
 .w-0 {
   width: 0 !important;
 }
+.w-auto{
+  width: auto !important;
+}
 
 /* fixed */
 
