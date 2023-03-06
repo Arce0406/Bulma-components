@@ -41,7 +41,7 @@ function modalLoaded() {
   document.addEventListener("keydown", (event) => {
     const e = event || window.event;
 
-    if (e.keyCode === 27) {
+    if (e.key === 'Escape') {
       // Escape key
       closeAllModals();
     }
