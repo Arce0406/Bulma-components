@@ -1,15 +1,20 @@
 import * as WebRTCAPI from './webrtc.js'
 
 document.addEventListener('DOMContentLoaded', function () {
+    //
+    draggable();
+
+    //
     const drag_video = document.getElementById('main-video');
     drag_video.addEventListener("play", (event) => { });
     drag_video.addEventListener("pause", (event) => { });
-    draggable();
 
+    //
     const video = document.getElementById('webrtc-video');
     video.addEventListener("play", (event) => { });
     video.addEventListener("pause", (event) => { });
 
+    //
     const btn_play_pause = document.getElementById('play_pause');
     btn_play_pause.addEventListener('click', async function (e) {
         if (video.paused || video.ended) {
@@ -59,6 +64,9 @@ function draggable() {
         wrapper.addEventListener('mousemove', onDrag);
     });
     wrapper.addEventListener('mouseup', onDragEnd);
-    window.addEventListener('mouseup', onDragEnd);
     wrapper.addEventListener('mouseleave', onDragEnd);
+    window.addEventListener('mouseup', onDragEnd);
+    window.addEventListener('resize', () => { 
+        // 設定到初始位置
+    });
 }
