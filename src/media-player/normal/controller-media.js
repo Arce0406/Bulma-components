@@ -18,14 +18,10 @@ function setting() {
     /**
      * Play、Pause
      */
+    btn_play_pause.addEventListener('click', togglePlay);
+    video.addEventListener('mouseup', togglePlay);
     video.addEventListener("play", changeButtonState, false);
-    video.addEventListener("pause", changeButtonState, false);
-    btn_play_pause.addEventListener('click', function (e) {
-        togglePlay();
-    });
-    video.addEventListener('mouseup', (e) => {
-        togglePlay();
-    });
+    video.addEventListener("pause", changeButtonState, false);    
     async function togglePlay() {
         if (video.paused || video.ended) {
             await video.play();
@@ -48,12 +44,8 @@ function setting() {
      * 音量
      */
     video.addEventListener("volumechange", checkVolume, false);
-    btn_volume.addEventListener('mouseenter', function (e) {
-        document.getElementById('volume-slider').classList.toggle('is-active');
-    });
-    btn_volume.addEventListener('mouseleave', function (e) {
-        document.getElementById('volume-slider').classList.toggle('is-active');
-    });
+    btn_volume.addEventListener('mouseenter', changeVolumeState);
+    btn_volume.addEventListener('mouseleave', changeVolumeState);
     volume_range.addEventListener('change', (e) => {
         checkVolume(volume_range.value);
     });
@@ -74,6 +66,9 @@ function setting() {
         else {
             btn_volume.firstElementChild.textContent = 'volume_down';
         }
+    }
+    function changeVolumeState(){
+        document.getElementById('volume-slider').classList.toggle('is-active');
     }
 
     /**
