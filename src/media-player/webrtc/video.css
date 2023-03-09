@@ -1,0 +1,213 @@
+* {
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.content-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+/* text-info */
+
+.status-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.time-info {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* Main controls */
+.main-control-bar {
+  background-color: transparent;
+  position: absolute;
+  touch-action: none;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.main-control-bar > .control-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-control-bar > .control-group > .button {
+  margin-top: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 9999px;
+  border-color: transparent;
+  height: 40px;
+  width: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-control-bar > .control-group > .button:first-child {
+  margin-top: 0;
+}
+
+.main-control-bar > .control-group > .button:hover {
+  background-color: rgba(128, 128, 128, 0.8);
+  color: whitesmoke;
+}
+
+/* video-wrapper */
+.video-wrapper {
+  background-color: transparent;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* 布局：左右 */
+.video-wrapper.left-and-right {
+  display: flex;
+}
+
+.switch-bar {
+}
+
+/* 布局：上下+邊欄 */
+.video-wrapper.up-and-down {
+  display: flex;
+  flex-direction: column;
+}
+
+.video-wrapper.left-and-right > .video-container,
+.video-wrapper.up-and-down > .video-container {
+  position: relative;
+}
+
+.video-wrapper.left-and-right > .video-container > video,
+.video-wrapper.up-and-down > .video-container > video {
+  width: 100%;
+  max-height: 100%;
+}
+
+/* 布局：拖動 */
+.video-wrapper.normal-and-drag {
+  position: absolute;
+}
+
+.video-wrapper.normal-and-drag > .video-container:last-child {
+  position: absolute;
+  right: 60px;
+  top: calc(100% - 300px);
+  width: 320px;
+  height: 180px;
+  z-index: 999;
+}
+
+/* video-container */
+.video-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* video-wrapper */
+.video-wrapper > .video-container > video {
+  position: absolute;
+  /* width: 100%; max-height: 100%; */
+  width: 100%;
+  height: auto;
+  touch-action: none;
+  cursor: inherit;
+  /* z-index: 0; */
+}
+
+/* Drag mode：only allow cover video control show on drag mode. */
+.video-wrapper.normal-and-drag > .video-container:last-child > .video-controls {
+  display: block;
+}
+
+.video-wrapper > .video-container > .video-controls {
+  display: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.video-wrapper > .video-container > .video-controls > .hover-cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0;
+  transition: opacity 100ms;
+}
+
+.video-wrapper > .video-container > .video-controls:hover > .hover-cover {
+  cursor: move;
+  opacity: 0.5;
+  transition: opacity 100ms;
+}
+
+.video-wrapper
+  > .video-container
+  > .video-controls:hover
+  > .controls
+  > .button {
+  opacity: 1;
+  transition: opacity 100ms;
+}
+
+.video-wrapper > .video-container > .video-controls > .controls {
+  position: absolute;
+  bottom: 0;
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-wrapper > .video-container > .video-controls > .controls > .button {
+  color: white;
+  background-color: transparent;
+  border-radius: 9999px;
+  border-color: transparent;
+  height: 40px;
+  width: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 100ms;
+}
+
+.video-wrapper
+  > .video-container
+  > .video-controls
+  > .controls
+  > .button:hover {
+  background-color: rgba(128, 128, 128, 0.8);
+  color: whitesmoke;
+  transition: opacity 100ms;
+}
