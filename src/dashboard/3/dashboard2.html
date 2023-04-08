@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulma components | Dashboard</title>
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="dashboard.js" type="module"></script>
+</head>
+<body class="has-topbar light-mode">
+    <!-- Navbar -->
+    <div class="topbar" style="left: 0;">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+                <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+            </a>
+        </div>
+
+        <div class="topbar-start is-flex-grow-1">
+            <a class="topbar-item">
+                Home
+            </a>
+            <a class="topbar-item">
+                Page1
+            </a>
+            <a class="topbar-item">
+                Page2
+            </a>
+            <a class="topbar-item">
+                Page3
+            </a>
+        </div>
+
+        <button class="button" id="btn-mode">
+            <span class="icon is-small">
+                <span class="material-symbols-outlined">
+                    dark_mode
+                </span>
+            </span>
+        </button>
+        <button class="button" id="btn-language">
+            <span class="icon is-small">
+                <span class="material-symbols-outlined">
+                    language
+                </span>
+            </span>
+        </button>
+    </div>
+
+    <!-- Right Side -->
+    <main class="dashboard-body">
+        <!-- <nav class="breadcrumb" aria-label="breadcrumbs">
+            <ul>
+                <li><a href="#">Bulma</a></li>
+                <li class="is-active"><a href="#" aria-current="page">Breadcrumb</a></li>
+            </ul>
+        </nav> -->
+
+        <!-- Intro -->
+        <div id="page-intro" class="menu-page is-active">
+            <div class="content">
+                <h4>Introduction</h4>
+                <p>
+                    『HACHI Membership Checker』是 <a href="https://discord.gg/honeybeesyoukoso">HoneyBEES Club (HACHI
+                        中文群)</a>
+                    專用的 Chrome 瀏覽器插件。
+                </p>
+                <p>主要功能為「提供簡單能在Discord領取會員身分組」的方法，並作為其他工具的入口。</p>
+                <p>
+                    如若使用上有任何問題，請至 Discord Server 透過 <span class="has-text-info">#聯絡我們</span> 詢問。
+                </p>
+                <hr>
+                <h4>About</h4>
+                <p>
+                    『HoneyBEES Club (HACHI 中文群)』為 <a href="https://www.youtube.com/c/HACHIVSinger">HACHI</a>
+                    的非官方中文粉絲社群。
+                </p>
+                <p>Discord 連結：
+                    <a href="https://discord.gg/honeybeesyoukoso">https://discord.gg/honeybeesyoukoso</a>
+                </p>
+                <p>開發者：Arce0406 <a href="https://twitter.com/Arce0406">(Twitter)</a></p>
+            </div>
+        </div>
+
+        <div id="page-1" class="menu-page"></div>
+        <div id="page-2" class="menu-page"></div>
+        <div id="page-3" class="menu-page"></div>
+
+    </main>
+</body>
+</html>

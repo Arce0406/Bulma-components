@@ -17,7 +17,7 @@
     <div class="topbar">
         <h2 class="title is-4 mb-0">Dashboard</h2>
         <div class="control has-icons-left">
-            <input class="input is-small" type="email" placeholder="Email">
+            <input class="input is-small" type="text" placeholder="text">
             <span class="icon is-left">
                 <span class="material-symbols-outlined">
                     search
@@ -42,48 +42,109 @@
     </div>
     <!--  -->
     <div class="sidebar">
-        <div class="sidebar-brand">
-            <a class="sidebar-brand-item" href="https://bulma.io">
-                <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-            </a>
-            <a role="button" class="navbar-burger sidebar-burger" aria-label="menu" aria-expanded="false"
-                data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
+        <div class="sidebar-top">
+            <div class="sidebar-brand">
+                <a class="sidebar-brand-item" href="https://bulma.io">
+                    <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+                </a>
+                <a role="button" class="navbar-burger sidebar-burger" aria-label="menu" aria-expanded="false"
+                    data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div class="sidebar-item is-active">
+                <span class="icon">
+                    <span class="material-symbols-outlined">
+                        dashboard
+                    </span>
+                </span>
+                <p class="sidebar-item-title">Dashboard</p>
+                <div class="sidebar-item-warning"></div>
+            </div>
+            <div class="sidebar-item">
+                <span class="icon">
+                    <span class="material-symbols-outlined">
+                        card_membership
+                    </span>
+                </span>
+                <p class="sidebar-item-title">Membership</p>
+                <div class="sidebar-item-warning"></div>
+            </div>
+            <div class="sidebar-item">
+                <span class="icon">
+                    <span class="material-symbols-outlined">
+                        imagesmode
+                    </span>
+                </span>
+                <p class="sidebar-item-title">Screenshot</p>
+                <div class="sidebar-item-warning"></div>
+            </div>
+            <div class="sidebar-item">
+                <span class="icon">
+                    <span class="material-symbols-outlined">
+                        view_timeline
+                    </span>
+                </span>
+                <p class="sidebar-item-title">Timeline</p>
+                <div class="sidebar-item-warning"></div>
+            </div>
+            <div class="sidebar-item">
+                <span class="icon">
+                    <span class="material-symbols-outlined">
+                        view_timeline
+                    </span>
+                </span>
+                <p class="sidebar-item-title">Other Tools</p>
+                <div class="sidebar-item-warning"></div>
+            </div>
         </div>
 
-        <div class="sidebar-item is-active">
-            <span class="icon">
-                <span class="material-symbols-outlined">
-                    dashboard
+        <div class="sidebar-bottom">
+            <div class="sidebar-item">
+                <span class="icon">
+                    <span class="material-symbols-outlined">
+                        work_history
+                    </span>
                 </span>
-            </span>
-            <p class="sidebar-item-title">Dashboard</p>
-            <div class="sidebar-item-warning"></div>
-        </div>
-        <div class="sidebar-item">
-            <span class="icon">
-                <span class="material-symbols-outlined">
-                    dashboard
+                <p class="sidebar-item-title">Changelog</p>
+                <div class="sidebar-item-warning"></div>
+            </div>
+            <div class="sidebar-item">
+                <span class="icon">
+                    <span class="material-symbols-outlined">
+                        settings
+                    </span>
                 </span>
-            </span>
-            <p class="sidebar-item-title">Dashboard</p>
-            <div class="sidebar-item-warning"></div>
+                <p class="sidebar-item-title">Settings</p>
+                <div class="sidebar-item-warning"></div>
+            </div>
         </div>
     </div>
     <!--  -->
     <main class="dashboard-body">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+            <ul>
+                <li><a href="#">Bulma</a></li>
+                <li class="is-active"><a href="#" aria-current="page">Breadcrumb</a></li>
+            </ul>
+        </nav>
         <div class="columns is-multiline">
-            <div class="column is-6">
-                <div class="box">123</div>
+            <div class="column is-3">
+                <div class="box">
+                    <div class="content">
+                        <p class="subtitle is-6">Screenshots</p>
+                        <p class="title is-5 mt-0">60</p>
+                    </div>
+                </div>
             </div>
-            <div class="column is-6">
-                <div class="box">123</div>
+            <div class="column is-4">
+                <div class="box h-100">123</div>
             </div>
-            <div class="column is-6">
-                <div class="box">123</div>
+            <div class="column is-5">
+                <div class="box h-100">123</div>
             </div>
         </div>
     </main>

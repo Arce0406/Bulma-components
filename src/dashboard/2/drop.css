@@ -1,0 +1,47 @@
+
+.dashboard-item-wrapper {
+    background-color: transparent;
+    height: max-content;
+  }
+  
+  .dashboard-item {
+    height: 100%;
+    padding: 0.75rem;
+  }
+  
+  .dashboard-item.is-1 {
+    width: 8.33333%;
+  }
+  .dashboard-item.is-2 {
+    width: 16.66667%;
+  }
+  .dashboard-item.is-3 {
+    width: 25%;
+  }
+  .dashboard-item.is-4 {
+    width: 33.33333%;
+  }
+  .dashboard-item.is-5 {
+    width: 41.66667%;
+  }
+  .dashboard-item.is-6 {
+    width: 50%;
+  }
+  .dashboard-item.is-7 {
+    width: 58.33333%;
+  }
+  .dashboard-item.is-8 {
+    width: 66.66667%;
+  }
+  .dashboard-item.is-9 {
+    width: 75%;
+  }
+  .dashboard-item.is-10 {
+    width: 83.33333%;
+  }
+  .dashboard-item.is-11 {
+    width: 91.66667%;
+  }
+  .dashboard-item.is-12 {
+    width: 100%;
+  }
